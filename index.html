@@ -5,20 +5,31 @@
     <meta charset="utf-8">
     <title>Javascript Clock UI Dark</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="clock">
-        <div class="hour">
-            <div class="hr" id="hr"></div>
+    <div class="parent">
+        <div class="div1">
+            <div class="clock">
+                <div class="hour">
+                    <div class="hr" id="hr"></div>
+                </div>
+                <div class="min">
+                    <div class="mn" id="mn"></div>
+                </div>
+                <div class="sec">
+                    <div class="sc" id="sc"></div>
+                </div>
+            </div>
         </div>
-        <div class="min">
-            <div class="mn" id="mn"></div>
-        </div>
-        <div class="sec">
-            <div class="sc" id="sc"></div>
+        <div class="div2">
+            <div class="time">
+                <h1 id="Date"> </h1>
+            </div>
         </div>
     </div>
+
     <script type="text/javascript">
         const deg = 6;
         const hr = document.querySelector('#hr');
@@ -32,9 +43,32 @@
             let ss = day.getSeconds() * deg;
 
             hr.style.transform = `rotateZ(${(hh) + (mm / 12)}deg)`;
-            mn.style.transform = `rotateZ($‘{mm}deg)`;
+            mn.style.transform = `rotateZ(${mm}deg)`;
             sc.style.transform = `rotateZ(${ss}deg)`;
         })
+
+        setInterval(function () {
+            var d = new Date();
+            document.getElementById('Date').innerHTML =
+                month(d.getMonth()) + ' ' +
+                d.getDate() + " " +
+                d.getFullYear();
+            function month(n) {
+                let months = ['January',
+                    'Febuary',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                    'July',
+                    'August',
+                    'September',
+                    'October',
+                    'November',
+                    'December'];
+                return months[n];
+            }
+        }, 1000)
     </script>
 </body>
 
